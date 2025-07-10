@@ -36,20 +36,20 @@ Categorize flats into price ranges and count how many flats fall into each categ
   Show the counts in descending order.
 
 ```sql
-  > SELECT  COUNT(RESALE_PRICE), CASE WHEN RESALE_PRICE <400000 THEN 'BUDGET' 
-  > WHEN RESALE_PRICE BETWEEN 400000 AND  700000 THEN 'MID-RANGE' 
-  > ELSE 'PREMIUM' END AS PRICE_RANGE
-  > FROM RESALE_FLAT_PRICES 
-  > GROUP BY PRICE_RANGE; 
-  > 
-  > *Alternative Solution which gives the same result ==(cross check)==*
-  > 
-  > *SELECT COUNT(*), PRICE_RANGE FROM 
-  >  (SELECT  RESALE_PRICE, CASE WHEN RESALE_PRICE <400000 THEN 'BUDGET' 
-  >   WHEN RESALE_PRICE BETWEEN 400000 AND  700000 THEN 'MID-RANGE' 
-  >   ELSE 'PREMIUM' END AS PRICE_RANGE 
-  >   FROM RESALE_FLAT_PRICES ) 
-  > GROUP BY PRICE_RANGE;*
+   SELECT  COUNT(RESALE_PRICE), CASE WHEN RESALE_PRICE <400000 THEN 'BUDGET' 
+   WHEN RESALE_PRICE BETWEEN 400000 AND  700000 THEN 'MID-RANGE' 
+   ELSE 'PREMIUM' END AS PRICE_RANGE
+   FROM RESALE_FLAT_PRICES 
+   GROUP BY PRICE_RANGE; 
+   
+   *Alternative Solution which gives the same result ==(cross check)==*
+   
+   *SELECT COUNT(*), PRICE_RANGE FROM 
+    (SELECT  RESALE_PRICE, CASE WHEN RESALE_PRICE <400000 THEN 'BUDGET' 
+     WHEN RESALE_PRICE BETWEEN 400000 AND  700000 THEN 'MID-RANGE' 
+     ELSE 'PREMIUM' END AS PRICE_RANGE 
+     FROM RESALE_FLAT_PRICES ) 
+   GROUP BY PRICE_RANGE;*
 ```
 
 ### Question 4
@@ -57,9 +57,9 @@ Categorize flats into price ranges and count how many flats fall into each categ
 Count the number of flats sold in each town during the first quarter of 2017 (January to March).
 
 ```sql
-  > select town, count(*) from RESALE_FLAT_PRICES
-  > where left(month,4) ='2017' and datepart('quarter', concat(month, '-01')::date)=1
-  > group by town
+   select town, count(*) from RESALE_FLAT_PRICES
+   where left(month,4) ='2017' and datepart('quarter', concat(month, '-01')::date)=1
+   group by town
 ```
 
 ## Submission
